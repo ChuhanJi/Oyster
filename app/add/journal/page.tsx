@@ -18,8 +18,9 @@ async function toDataUrl(url: string): Promise<string> {
 }
 
 const PAGE_H = 740;
-// header(92) + counter(26) + gap(24) + button(68) + breathing room(50)
-const CHROME_H = 260;
+// header(94) + main-padding(48) + counter(26) + gap(32) + button(68) + pb(80)
+const CHROME_H = 350;
+const ZOOM = 0.8; // must match html { zoom } in globals.css
 
 export default function JournalPage() {
   const router = useRouter();
@@ -29,13 +30,13 @@ export default function JournalPage() {
   const [savedPhotos, setSavedPhotos] = useState<SavedPhoto[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving]   = useState(false);
-  const [nbScale, setNbScale] = useState(0.9);
+  const [nbScale, setNbScale] = useState(1.0);
   const isDone = useRef(false);
 
   useEffect(() => {
     const compute = () => {
-      const available = window.innerHeight - CHROME_H;
-      setNbScale(Math.min(1.1, Math.max(0.55, available / PAGE_H)));
+      const available = window.innerHeight / ZOOM - CHROME_H;
+      setNbScale(Math.min(1.2, Math.max(0.55, available / PAGE_H)));
     };
     compute();
     window.addEventListener("resize", compute);
