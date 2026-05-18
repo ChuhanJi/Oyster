@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   description: "The world is your oyster. Every trip leaves a pearl.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
