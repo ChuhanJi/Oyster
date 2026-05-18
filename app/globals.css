@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-html {
-  zoom: 0.8;
-}
-
 /* ─── Design System Tokens ─────────────────────────────────────── */
 :root {
   /* Base */
