@@ -13,8 +13,6 @@ const EMOJIS = [
 
 const PHOTO_W = 520; // photo width (height is natural)
 const SLOT    = 572; // track slot per photo
-const TRACK   = 1500; // visible track container width
-const ORIGIN  = (TRACK - SLOT) / 2; // translateX to center photo[0]
 
 // Place sticker near one of the four edges
 function edgePlacement() {
@@ -36,6 +34,14 @@ export default function Step3Page() {
   const [idx, setIdx] = useState(0);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [hovering, setHovering] = useState(false);
+  const [track, setTrack] = useState(1500);
+
+  useEffect(() => {
+    const compute = () => setTrack(Math.max(SLOT + 2, window.innerWidth));
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, []);
 
   // Carousel drag
   const dragStartX = useRef<number | null>(null);
@@ -137,9 +143,8 @@ export default function Step3Page() {
     );
   }
 
-  // Track translateX — centers photo[idx], offset by live drag delta
-  const trackX = ORIGIN - idx * SLOT + rawOffset;
-  // Fractional index for smooth scale/opacity during drag
+  const origin = (track - SLOT) / 2;
+  const trackX = origin - idx * SLOT + rawOffset;
   const fractIdx = idx - rawOffset / SLOT;
 
   return (
@@ -170,7 +175,7 @@ export default function Step3Page() {
       <div
         ref={containerRef}
         style={{
-          width: TRACK,
+          width: track,
           overflowX: "clip",   // clips side photos horizontally without touching vertical
           overflowY: "visible", // lets sticker borders bleed above/below freely
           position: "relative",

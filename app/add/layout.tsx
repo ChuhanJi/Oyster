@@ -97,7 +97,8 @@ export default function AddLayout({ children }: { children: React.ReactNode }) {
       <main style={{
         flex: 1,
         minHeight: 0,
-        overflow: "hidden",
+        overflowX: "hidden",
+        overflowY: "auto",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
