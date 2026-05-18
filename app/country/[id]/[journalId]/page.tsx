@@ -118,7 +118,7 @@ export default function JournalViewPage({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        paddingBottom: 48,
+        padding: "24px 0",
       }}>
         <NotebookViewer photos={entry.photos} meta={meta} scale={nbScale} />
       </main>
