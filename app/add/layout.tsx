@@ -29,7 +29,7 @@ export default function AddLayout({ children }: { children: React.ReactNode }) {
     <div style={{
       position: "relative",
       width: "100%",
-      height: "100vh",
+      height: "calc(100vh / 0.8)",
       overflow: "hidden",
       display: "flex",
       flexDirection: "column",

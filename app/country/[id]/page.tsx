@@ -124,7 +124,7 @@ export default function CountryJournalListPage({
 
   return (
     <div style={{
-      minHeight: "100vh",
+      minHeight: "calc(100vh / 0.8)",
       background: "var(--color-bg)",
       padding: "48px 96px 100px",
     }}>

@@ -242,7 +242,7 @@ export default function Step3Page() {
                       src={photo.url}
                       alt=""
                       draggable={false}
-                      style={{ width: "100%", height: "auto", maxHeight: "calc(100vh - 320px)", objectFit: "cover", display: "block" }}
+                      style={{ width: "100%", height: "auto", maxHeight: "calc(100vh / 0.8 - 320px)", objectFit: "cover", display: "block" }}
                     />
                   </div>
 
