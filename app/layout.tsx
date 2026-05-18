@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Caveat, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
+import ViewportScaler from "@/components/ViewportScaler";
 
 const caveat = Caveat({
   variable: "--font-caveat",
@@ -32,7 +33,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${caveat.variable} ${barlowCondensed.variable} h-full`}>
-      <body className="h-full">{children}</body>
+      <body className="h-full">
+        <ViewportScaler />
+        {children}
+      </body>
     </html>
   );
 }
