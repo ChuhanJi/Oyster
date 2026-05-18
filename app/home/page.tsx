@@ -18,7 +18,7 @@ export default function HomePage() {
       style={{
         position: "relative",
         width: "100%",
-        height: "calc(100vh / 0.8)",
+        height: "calc(100vh / 0.9)",
         overflow: "hidden",
         background: "var(--color-bg)",
       }}
