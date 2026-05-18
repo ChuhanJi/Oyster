@@ -1,26 +1,328 @@
 @import "tailwindcss";
 
+/* ─── Design System Tokens ─────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base */
+  --color-bg: #F6F6F6;
+  --color-surface: #EEEEEE;
+  --color-surface-raised: #FFFFFF;
+  --color-border: #E0E0E0;
+
+  /* Text */
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #888888;
+  --color-text-tertiary: #BBBBBB;
+
+  /* ── Vivid accent colors (from Figma palette) ── */
+  --color-accent-pink: #F26496;
+  --color-accent-yellow: #FEC218;
+  --color-accent-purple: #CA5EE8;
+  --color-accent-orange: #FF922B;
+  --color-accent-indigo: #855DF6;
+  --color-accent-lime: #94D631;
+  --color-accent-blue: #349AEF;
+  --color-accent-teal: #23C796;
+
+  /* ── Pastel tints (from Figma palette) ── */
+  --color-pastel-pink: #FFC8D2;
+  --color-pastel-cream: #FDF9DB;
+  --color-pastel-lavender: #F1C7F7;
+  --color-pastel-peach: #FFE1B1;
+  --color-pastel-periwinkle: #C8CDFD;
+  --color-pastel-sage: #D2EDAB;
+  --color-pastel-blue: #B2DCFB;
+  --color-pastel-teal: #AEE7E6;
+
+  /* Map */
+  --color-map-unvisited: #CCCCCC;
+  --color-map-unlocked: #FFC8D2;
+
+  /* Ticket */
+  --color-ticket-bg: #F6F5F0;
+  --color-ticket-accent: #D2EDAB;
+
+  /* Spacing scale */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-12: 96px;
+
+  /* Border radius */
+  --radius-pill: 36px;
+  --radius-card: 12px;
+  --radius-ticket: 16px;
+  --radius-photo: 6px;
+  --radius-input: 8px;
+  --radius-notebook: 4px;
 }
 
+/* ─── Tailwind Theme Extension ──────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --font-ui: var(--font-caveat-var, ui-sans-serif), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-handwrite: var(--font-caveat), cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base Styles ───────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Focus Ring ────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 3px;
+}
+
+/* ─── Selection ─────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-pastel-sage);
+}
+
+/* ─── Primary CTA Button (pill) ─────────────────────────────────── */
+/* Used for "open", "next →", "done ✓" across the app */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 68px;
+  padding: 0 40px;
+  border-radius: var(--radius-pill);
+  background-color: #1A1A1A;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  color: #FFFFFF;
+  font-family: inherit;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  box-shadow:
+    0 20px 56px rgba(0, 0, 0, 0.32),
+    0 6px 18px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  transition: background 180ms ease, box-shadow 180ms ease, transform 120ms ease;
+}
+
+.btn-primary:hover {
+  background-color: #2E2E2E;
+  box-shadow:
+    0 28px 64px rgba(0, 0, 0, 0.36),
+    0 8px 24px rgba(0, 0, 0, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(-3px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Legacy alias used on landing page */
+.landing-open-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 184px;
+  height: 56px;
+  border-radius: var(--radius-pill);
+  background-color: #1A1A1A;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 500;
+  color: #FFFFFF;
+  font-family: inherit;
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.24),
+    0 2px 6px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: background 180ms ease, box-shadow 180ms ease, transform 120ms ease;
+}
+
+.landing-open-btn:hover {
+  background-color: #2E2E2E;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.28),
+    0 4px 10px rgba(0, 0, 0, 0.14);
+  transform: translateY(-1px);
+}
+
+.landing-open-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── Flight Ticket ─────────────────────────────────────────── */
+.ticket-code-btn {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-weight: 900;
+  font-size: 148px;
+  line-height: 1;
+  color: var(--color-text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: text;
+  letter-spacing: -0.01em;
+  min-width: 220px;
+}
+
+.ticket-search-input {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--color-text-primary);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(0,0,0,0.2);
+  outline: none;
+  padding: 0 0 4px;
+  width: 240px;
+  caret-color: var(--color-text-primary);
+}
+
+.ticket-search-input::placeholder {
+  color: rgba(0,0,0,0.18);
+}
+
+.ticket-date-input {
+  font-size: 17px;
+  font-family: inherit;
+  font-weight: 500;
+  color: rgba(0,0,0,0.7);
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgba(0,0,0,0.2);
+  outline: none;
+  cursor: pointer;
+  padding: 0 0 6px;
+}
+
+.ticket-date-input::-webkit-calendar-picker-indicator {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+/* ─── Home Page ─────────────────────────────────────────────── */
+.home-fab {
+  position: absolute;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: #1A1A1A;
+  box-shadow:
+    0 10px 32px rgba(0, 0, 0, 0.30),
+    0 3px 8px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: background 180ms ease, box-shadow 180ms ease, transform 120ms ease;
+}
+
+.home-fab:hover {
+  background-color: #2E2E2E;
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.34),
+    0 5px 12px rgba(0, 0, 0, 0.18);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.home-fab:active {
+  transform: translateX(-50%) translateY(0);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+
+.home-profile-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.92);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.12),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+  transition: background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.home-profile-btn:hover {
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── Camera Page ───────────────────────────────────────────── */
+/* ─── Step 3 — Caption Input ────────────────────────────────── */
+.caption-input::placeholder {
+  font-family: var(--font-caveat), cursive;
+  font-size: 26px;
+  color: rgba(0,0,0,0.22);
+}
+
+/* ─── Camera Page ───────────────────────────────────────────── */
+@keyframes shutterPulse {
+  0%, 100% {
+    box-shadow:
+      0 3px 8px rgba(0,0,0,0.4),
+      inset 0 1px 3px rgba(255,255,255,0.7),
+      0 0 0 0 rgba(220,220,220,0),
+      0 0 0 0 rgba(220,220,220,0);
+  }
+  50% {
+    box-shadow:
+      0 3px 8px rgba(0,0,0,0.4),
+      inset 0 1px 3px rgba(255,255,255,0.7),
+      0 0 0 6px rgba(220,220,220,0.3),
+      0 0 0 12px rgba(220,220,220,0.1);
+  }
+}
+
+@keyframes cameraFlash {
+  0%   { opacity: 0; }
+  8%   { opacity: 1; }
+  100% { opacity: 0; }
 }
