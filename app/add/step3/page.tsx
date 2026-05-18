@@ -228,7 +228,7 @@ export default function Step3Page() {
                     willChange: "transform, opacity",
                   }}
                 >
-                  {/* Image — natural aspect ratio, no cropping */}
+                  {/* Image — natural aspect ratio, capped so controls always stay visible */}
                   <div style={{
                     width: "100%",
                     borderRadius: 12,
@@ -242,7 +242,7 @@ export default function Step3Page() {
                       src={photo.url}
                       alt=""
                       draggable={false}
-                      style={{ width: "100%", height: "auto", display: "block" }}
+                      style={{ width: "100%", height: "auto", maxHeight: "calc(100vh - 320px)", objectFit: "cover", display: "block" }}
                     />
                   </div>
 
