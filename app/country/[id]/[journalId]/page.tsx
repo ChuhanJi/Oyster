@@ -27,7 +27,7 @@ export default function JournalViewPage({
   if (!loaded) {
     return (
       <div style={{
-        minHeight: "calc(100vh / 0.9)", display: "flex",
+        minHeight: "calc(100vh / 0.8)", display: "flex",
         alignItems: "center", justifyContent: "center",
         fontSize: 14, color: "var(--color-text-tertiary)",
       }}>
@@ -39,7 +39,7 @@ export default function JournalViewPage({
   if (!entry) {
     return (
       <div style={{
-        minHeight: "calc(100vh / 0.9)", display: "flex", flexDirection: "column",
+        minHeight: "calc(100vh / 0.8)", display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center", gap: 20,
       }}>
         <p style={{ fontSize: 16, color: "var(--color-text-secondary)" }}>

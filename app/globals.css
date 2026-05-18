@@ -78,11 +78,11 @@
 }
 
 html {
-  height: calc(100% / 0.9); /* fills viewport visually at zoom: 0.9 */
+  height: 125%; /* = 100% / 0.8 — fills viewport visually at zoom: 0.8 */
   overflow: hidden;
   margin: 0;
   padding: 0;
-  zoom: 0.9;
+  zoom: 0.8;
 }
 
 body {
